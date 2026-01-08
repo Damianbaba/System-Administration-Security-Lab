@@ -30,6 +30,7 @@ Subnet: 10.0.0.0/24
 Netmask: 255.255.255.0
 
 LAB machines
+
 System Role IP Address
 Windows Server 2016 Administration server 10.0.0.1
 Windows 11 Pro Client workstation 10.0.0.2
