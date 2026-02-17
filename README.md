@@ -1,126 +1,261 @@
-# System-Administration-Security-Lab
+🧪 Enterprise Security LAB – Active Directory, Web Security & AI-Assisted Log Analysis
+📌 Project Overview
 
-🧪 LAB: System Administration & Security Fundamentals
+This project documents a fully virtualized enterprise-style LAB environment built to practice:
 
-Project description
+Windows Server administration
 
-This project presents a complete LAB environment built for learning and practicing Windows and Linux system administration as well as cybersecurity fundamentals.
-The LAB was created locally in a virtualized environment and includes network configuration, remote access, service analysis, and web application security testing.
+Active Directory design
 
-This is an educational and demonstrational project.
+Group Policy enforcement
 
-🎯 Project goals
+Linux server management
 
--build a client–server environment (Windows + Linux)
+Web application deployment & hardening
 
--configure remote access (RDP, SSH)
+Offensive security testing
 
--analyze network services using Nmap
+Log analysis & detection engineering
 
--deploy a web application (WordPress)
+AI-assisted security triage
 
--perform controlled brute force tests
+The LAB simulates a small corporate infrastructure with domain management, user restrictions, web services, and a dedicated attacker machine.
 
--analyze logs and system behavior
+All activities were performed in an isolated local environment for educational purposes.
 
-🧱 Environment architecture
+🧱 Infrastructure Architecture
+🌐 Network Configuration
 
-Network
 Subnet: 10.0.0.0/24
 Netmask: 255.255.255.0
 
-LAB machines
-System Role IP Address
-Windows Server 2016 Administration server 10.0.0.1
-Windows 11 Pro Client workstation 10.0.0.2
-Ubuntu Linux Linux / Security server 10.0.0.3
+Machine Role IP Address
+Windows Server 2016 Domain Controller (soc.corp) 10.0.0.1
+Windows 11 Pro Domain Client 10.0.0.2
+Ubuntu Server Web / Linux Server 10.0.0.3
+Kali Linux Attacker Machine 10.0.0.4
+🏢 Active Directory – soc.corp
+Domain Structure
+soc.corp
+│
+├── OU_Admin
+├── OU_Users
+└── OU_Guests
 
-🔐 Remote access
+Implemented Controls
 
--RDP
+Custom Organizational Units
 
--Windows 11 → Windows Server 2016
+Role-based user separation
 
--Windows Server → Windows 11
+Logon hour restrictions (09:00–17:00 for standard users)
 
--SSH
+Peripheral access restrictions:
 
--Administrative access to Ubuntu Linux
+USB storage blocked
 
-🌐 Network analysis (Nmap)
+Printer access restricted
 
-From the Ubuntu Linux machine, network scans were performed to identify active hosts, open ports, and services.
+Group Policy Objects (GPO) configuration
 
-Techniques used:
+Account permission segmentation
 
--TCP SYN Scan (-sS)
+Security Monitoring
 
--UDP Scan (-sU)
+Event ID 4624 – Successful logon
 
--Service & Version Detection (-sV)
+Event ID 4625 – Failed logon
 
--OS Detection (-O)
+Logon time enforcement validation
 
--No DNS resolution scans (-n)
+Policy enforcement testing
 
-Scope:
+🖥️ Linux Server (Ubuntu)
+Services Deployed
 
-10.0.0.0/24
+Apache2
 
-🖥️ Web server (Linux)
+PHP
 
--Apache2
+MySQL
 
--PHP
+WordPress
 
--MySQL
-
--PHP ↔ SQL integration
-
-📰 WordPress
-
--WordPress installed on Ubuntu Linux
-
--Database configured
-
--Fully functional web application
-
-URL:
+URL (LAB only):
 
 http://10.0.0.3/wordpress
 
-🛡️ Security testing – Brute Force
+Web Stack Integration
 
-In the LAB environment, controlled multiple login attempts were performed against the WordPress admin panel to:
+PHP ↔ MySQL configuration
 
--simulate brute force attacks
+WordPress database isolation
 
--generate security events
+Service verification via Nmap
 
--analyze server behavior
+🔐 Remote Access Configuration
+RDP
 
-Monitored elements:
+Windows 11 ↔ Windows Server 2016
 
--Apache logs
+SSH
 
--application behavior
+Administrative access to Ubuntu
 
--server response under increased load
+Log monitoring via /var/log/auth.log
 
-⚠️ All tests were performed only on a self-hosted LAB application.
+🧪 Offensive Security Testing
 
-📌 Conclusions
+A dedicated Kali Linux VM simulates attacker behavior.
 
-This project allowed:
+Tools Used
 
--practical integration of Windows and Linux administration
+Nmap
 
--understanding of local network architecture
+WPScan
 
--analysis of real security logs
+Nikto
 
--increased awareness of web application threats
+Burp Suite
 
-📄 Disclaimer
+Reconnaissance Techniques
 
-This project was created for educational purposes only and conducted exclusively in a controlled LAB environment.
+TCP SYN scan (-sS)
+
+UDP scan (-sU)
+
+Service detection (-sV)
+
+OS detection (-O)
+
+Full subnet scan (10.0.0.0/24)
+
+🛡️ Attack Simulation Scenarios
+1️⃣ WordPress Brute Force Simulation
+
+Controlled login attempts were performed to:
+
+Generate Apache access log events
+
+Analyze server behavior under authentication attacks
+
+Monitor response codes and IP patterns
+
+Logs Analyzed
+
+/var/log/apache2/access.log
+
+/var/log/apache2/error.log
+
+/var/log/auth.log
+
+2️⃣ Domain Policy Enforcement Testing
+
+Attempted logins outside permitted hours
+
+Tested restricted user permissions
+
+Validated USB blocking policies
+
+Observed related Windows Security Events
+
+🤖 AI-Assisted Log Analysis (Linux Terminal Integration)
+
+A custom AI assistant was integrated into the Linux terminal using OpenAI API.
+
+Purpose
+
+To assist in:
+
+Summarizing authentication logs
+
+Identifying brute-force patterns
+
+Highlighting suspicious IP addresses
+
+Extracting repeated failed login attempts
+
+Accelerating security log triage
+
+Workflow Concept
+
+Logs are filtered locally using Linux tools (grep, awk, sort).
+
+Structured data is passed to the AI API.
+
+AI generates summarized security insight.
+
+Results are reviewed and correlated with system behavior.
+
+⚠️ In production environments, log data should be sanitized before external API transmission.
+
+🔎 Security Engineering Mindset
+
+This LAB focuses not only on attack execution, but on:
+
+Attack surface identification
+
+Log correlation
+
+Policy validation
+
+Detection and mitigation awareness
+
+Infrastructure segmentation
+
+Identity-based security controls
+
+🎯 Learning Objectives
+
+Build and manage an AD domain environment
+
+Apply GPO-based security controls
+
+Deploy and secure a Linux web server
+
+Perform controlled penetration testing
+
+Analyze authentication logs and web logs
+
+Integrate AI-assisted triage into security workflows
+
+Understand attack → detection → mitigation cycles
+
+📊 Key Skills Demonstrated
+
+Windows Server Administration
+
+Active Directory Design
+
+Group Policy Configuration
+
+Linux Server Management
+
+Network Scanning & Enumeration
+
+Web Application Security Testing
+
+Log Analysis & Event Investigation
+
+API Integration (OpenAI)
+
+Security Lab Architecture Design
+
+🚧 Future Improvements
+
+Centralized log aggregation
+
+Fail2ban integration
+
+Web application hardening
+
+Firewall rule optimization
+
+Automated detection scripting
+
+SIEM-style log visualization
+
+⚠️ Disclaimer
+
+This project is strictly educational.
+All security testing was conducted in an isolated local lab environment owned and controlled by the author.
